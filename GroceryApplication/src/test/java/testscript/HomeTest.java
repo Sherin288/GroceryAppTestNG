@@ -1,32 +1,42 @@
 package testscript;
 
+import org.testng.annotations.Test;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import constant.Constants;
+import pages.HomePage;
+import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase{
 	
-	@Test
+	@Test(description = "To verify Home Page Logout Functionality")
 	public void verifyHomePageLogout() throws IOException
 	{
-		String usernameValue=ExcelUtility.getStringData(1, 0, "LoginPage");//Data driven approach is preferred
-		String passwordValue=ExcelUtility.getStringData(1, 1, "LoginPage");// here login page is the excel sheet name
-		WebElement username = driver.findElement(By.xpath("//input[@placeholder='Username']"));
-		username.sendKeys(usernameValue);// here the value from excel is passed to the field available
-		WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[text()='Sign In']"));
-		login.click();
+		String usernameValue=ExcelUtility.getStringData(1, 0, Constants.LOGINSHEET);//Data driven approach is preferred
+		String passwordValue=ExcelUtility.getStringData(1, 1, Constants.LOGINSHEET);// here login page is the excel sheet name
 		
-		WebElement adminIcon = driver.findElement(By.xpath("//img[@src='https://groceryapp.uniqassosiates.com/public/assets/admin/dist/img/avatar5.png']"));
-		adminIcon.click();
-		WebElement logoutOption = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-power-off']"));
-		logoutOption.click();
+		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
+		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
+		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
+		loginpage.clickOnSignin();
+		
+		HomePage homepage = new HomePage(driver);//object for homepage class is created and driver is passed as argument
+		homepage.clickAdminIcon();
+		homepage.clickLogout();
+		
+		//Assertion used to find whether the test case fails
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
+		Assert.assertEquals(actual,expected,"Logout is not successful");//Logout is not successful prints when test case fails
+		
+		
 	}
 	
 
