@@ -1,9 +1,11 @@
 package base;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,9 +16,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import constant.Constants;
 import utilities.ScreenshotUtility;
 
 public class TestNGBase {
+	Properties prop;
+	FileInputStream f;
 	
 	public WebDriver driver;
 	
@@ -24,6 +29,9 @@ public class TestNGBase {
 	@Parameters("browser")//from testng xml name= "browser" value should be same in @parameters and testng xml
 	public void BrowserInitializer(String browser) throws Exception
 	{
+		prop = new Properties();//object of properties class is created
+		f= new FileInputStream(Constants.CONFIGFILE);//fileinput stream is pointed to configfile
+		prop.load(f);//f contains config file, load will  extract the data from connfigfile
 		if(browser.equalsIgnoreCase("Chrome")) {  // this is used to if the value given is Chrome that will be executed
 			//driver=new ChromeDriver();
 			ChromeOptions options = new ChromeOptions();
@@ -40,7 +48,10 @@ public class TestNGBase {
 		}
 		
 		
-		driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
+		//driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
+		
+		driver.get(prop.getProperty("url"));//industrial standard to pass url using config properties file
+		//prop will get the url property from file and url is accessed
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));//wait for the webelements to load to avoid timeout issues
 		//for all @findBy xpath webelement is not found it will wait for sometime

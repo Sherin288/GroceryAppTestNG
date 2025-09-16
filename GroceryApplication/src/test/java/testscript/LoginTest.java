@@ -34,7 +34,7 @@ public class LoginTest extends TestNGBase {
 		
 	}
 	
-	@Test  (priority = 2,description ="Login With Invalid Password" )//Testcase 2
+	@Test  (priority = 2,description ="Login With Invalid Password" ,groups = {"smoke"})//Testcase 2
 	public void VerifyLoginWithInvalidPassword() throws IOException
 	{
 		String usernameValue = ExcelUtility.getStringData(2, 0, Constants.LOGINSHEET);

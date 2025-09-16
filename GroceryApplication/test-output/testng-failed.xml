@@ -4,13 +4,32 @@
   <listeners>
     <listener class-name="reportGeneration.Listener"/>
   </listeners>
+  <test thread-count="5" parallel="methods" name="Test(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="testscript.LoginTest">
+        <methods>
+          <include name="VerifyLoginWithInvalidUsername"/>
+          <include name="driverQuit"/>
+          <include name="BrowserInitializer"/>
+          <include name="VerifyLoginWithInvalidPassword"/>
+          <include name="verifyLoginWithValidCredentials"/>
+          <include name="quitAndClose"/>
+          <include name="VerifyLoginWithInvalidUsernameandPassword" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- testscript.LoginTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
   <test thread-count="5" parallel="methods" name="FirefoxTest(failed)">
     <parameter name="browser" value="firefox"/>
     <classes>
       <class name="testscript.LoginTest">
         <methods>
           <include name="driverQuit"/>
+          <include name="VerifyLoginWithInvalidUsername"/>
           <include name="BrowserInitializer"/>
+          <include name="VerifyLoginWithInvalidPassword"/>
+          <include name="verifyLoginWithValidCredentials"/>
           <include name="quitAndClose"/>
           <include name="VerifyLoginWithInvalidUsernameandPassword"/>
         </methods>

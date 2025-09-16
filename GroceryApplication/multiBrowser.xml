@@ -14,10 +14,10 @@
       <class name="testscript.ManageNewsTest"/>-->
      <!-- <class name="testscript.AdminTest"/> -->
       <class name="testscript.LoginTest">
-      <methods>
-      <include name="VerifyLoginWithInvalidUsernameandPassword"></include><!-- Only  single method is within login test is executed -->
-     <!-- <exclude name=""></exclude>--><!-- Only  the specified method is excluded from execution login test is executed -->
-      </methods>
+      <!--<methods>
+      <include name="VerifyLoginWithInvalidUsernameandPassword"></include> Only  single method is within login test is executed 
+      <exclude name=""></exclude> Only  the specified method is excluded from execution login test is executed 
+      </methods>-->
       </class>
     </classes>
   </test> <!-- Test -->
@@ -30,10 +30,10 @@
       <class name="testscript.ManageNewsTest"/>-->
      <!-- <class name="testscript.AdminTest"/> -->
       <class name="testscript.LoginTest">
-      <methods>
-      <include name="VerifyLoginWithInvalidUsernameandPassword"></include><!-- Only  single method is within login test is executed -->
-     <!-- <exclude name=""></exclude>--><!-- Only  the specified method is excluded from execution login test is executed -->
-      </methods>
+      <!--<methods>
+      <include name="VerifyLoginWithInvalidUsernameandPassword"></include> Only  single method is within login test is executed 
+      <exclude name=""></exclude> Only  the specified method is excluded from execution login test is executed 
+      </methods>-->
       </class>
     </classes>
   </test> <!-- Test -->

@@ -10,7 +10,10 @@ public class Constants { //constant classs is used to save values that doesn't c
 	
 	
 	public static final String HOMESHEET = "HomePage";//second tab name of excel sheet is saved here.
+	
+	public static final String CONFIGFILE=System.getProperty("user.dir")+"\\src\\main\\resources\\config.properties";
+	//this is used in test NG base for property file
+	
 
-//Also create a home page sheet
 }
 
