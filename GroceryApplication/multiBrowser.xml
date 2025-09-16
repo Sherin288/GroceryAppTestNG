@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="parallel" parallel="methods">
+<listeners>
+ <listener class-name="reportGeneration.Listener">
+ 
+ </listener> <!--for generating the report when test case are executed-->
+ </listeners>
+ 
+  <test thread-count="5" name="Test"><!--How many  class , resources can be loaded together - 5, normal practize is to give value 5 -->
+  <parameter name="browser" value="chrome"></parameter><!--parameterization for chrome browser testing-->
+    <classes>
+     <!-- <class name="testscript.HomeTest"/>   classes are executed as per the order given testng xml , Ctrl+Shift+slash to comment together
+      <class name="testscript.ManageNewsTest"/>-->
+     <!-- <class name="testscript.AdminTest"/> -->
+      <class name="testscript.LoginTest">
+      <methods>
+      <include name="VerifyLoginWithInvalidUsernameandPassword"></include><!-- Only  single method is within login test is executed -->
+     <!-- <exclude name=""></exclude>--><!-- Only  the specified method is excluded from execution login test is executed -->
+      </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+   
+   <!--For firefox browser testing , in parallel with chrome browser testing -->
+    <test thread-count="5" name="FirefoxTest"><!--How many  class , resources can be loaded together - 5, normal practize is to give value 5 -->
+  <parameter name="browser" value="firefox"></parameter><!--parameterization-->
+    <classes>
+     <!-- <class name="testscript.HomeTest"/>   classes are executed as per the order given testng xml , Ctrl+Shift+slash to comment together
+      <class name="testscript.ManageNewsTest"/>-->
+     <!-- <class name="testscript.AdminTest"/> -->
+      <class name="testscript.LoginTest">
+      <methods>
+      <include name="VerifyLoginWithInvalidUsernameandPassword"></include><!-- Only  single method is within login test is executed -->
+     <!-- <exclude name=""></exclude>--><!-- Only  the specified method is excluded from execution login test is executed -->
+      </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->

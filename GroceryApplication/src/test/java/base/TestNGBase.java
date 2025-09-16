@@ -1,6 +1,7 @@
 package base;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import utilities.ScreenshotUtility;
 
@@ -18,23 +20,31 @@ public class TestNGBase {
 	
 	public WebDriver driver;
 	
-	@BeforeMethod	
-	public void BrowserInitializer()
+	@BeforeMethod(alwaysRun = true)
+	@Parameters("browser")//from testng xml name= "browser" value should be same in @parameters and testng xml
+	public void BrowserInitializer(String browser) throws Exception
 	{
-		//driver = new FirefoxDriver(); 
-		//driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
-		//ChromeOptions` allows you to customize how Chrome starts — such as setting preferences, enabling headless mode, disabling extensions, etc.
-		ChromeOptions options = new ChromeOptions();
-		//Create a map that has the key as password leak detection , and value to be false so that leak detect is turned off while launching browser.
-		Map<String, Object> prefs = new HashMap<String, Object>();
-		prefs.put("profile.password_manager_leak_detection", false);
-		//Set the above pref as "Experimental option" so that it is reflected in user preferences
-		options.setExperimentalOption("prefs", prefs);
-		//Launch the driver with customized preference with "options"
-		driver = new ChromeDriver(options);
+		if(browser.equalsIgnoreCase("Chrome")) {  // this is used to if the value given is Chrome that will be executed
+			//driver=new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			Map<String,Object> prefs=new HashMap<>();
+			prefs.put("profile.password_manager_leak_detection", false);
+			options.setExperimentalOption("prefs", prefs);
+			driver=new ChromeDriver(options);
+		}
+		else if(browser.equalsIgnoreCase("Firefox")) { // this is used to if the value given is Firefox that will be executed
+			driver=new FirefoxDriver();
+		}
+    else {
+			throw new Exception("Invalid browser name");
+		}
+		
 		
 		driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));//wait for the webelements to load to avoid timeout issues
+		//for all @findBy xpath webelement is not found it will wait for sometime
+		
 	}
 	
 	@AfterMethod

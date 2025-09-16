@@ -6,9 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.PageUtility;
+
 public class HomePage {
 
 	public WebDriver driver;
+	PageUtility  pageutility = new PageUtility();
 	
 	public HomePage(WebDriver driver)
 	{
@@ -19,14 +22,16 @@ public class HomePage {
 	@FindBy(xpath ="//img[@src='https://groceryapp.uniqassosiates.com/public/assets/admin/dist/img/avatar5.png']")WebElement adminIcon;
 	public void clickAdminIcon() {
 		//WebElement adminIcon = driver.findElement(By.xpath("//img[@src='https://groceryapp.uniqassosiates.com/public/assets/admin/dist/img/avatar5.png']"));
-		adminIcon.click();
+		//adminIcon.click();
+		pageutility.clickElement(adminIcon);
 	}
 	
 	@FindBy(xpath="//i[@class='ace-icon fa fa-power-off']")WebElement logoutOption ;
 	public void clickLogout() {
 		//WebElement logoutOption = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-power-off']")); this code is commented
 		//because this is replaced with line number 25
-		logoutOption.click();
+		//logoutOption.click();
+		pageutility.clickElement(logoutOption);
 	}
 	
 	

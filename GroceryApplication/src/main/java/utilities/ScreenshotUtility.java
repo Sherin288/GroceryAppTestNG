@@ -15,7 +15,7 @@ public class ScreenshotUtility {
 	public void getScreenshot(WebDriver driver,String failedTestCase) throws IOException
 	{
 	TakesScreenshot scrShot = (TakesScreenshot) driver;//Takescreenshot is an interface provided by selenium , takescreenshot is typecasted to driver
-	File screenShot = scrShot.getScreenshotAs(OutputType.FILE);//save the screenshot as a file
+	File screenShot = scrShot.getScreenshotAs(OutputType.FILE);//save the screenshot as a file(ctrl+s)
 
 	String timeStamp = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss").format(new Date());//saved format of filename should be dd_MM_yyyy_hh_mm_ss , format is an inbuilt method in java
 	File f1 = new File(System.getProperty("user.dir") + "//OutputScreenShot");//create file in  directory

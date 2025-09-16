@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import constant.Messages;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
@@ -33,7 +34,7 @@ public class ManageNewsTest extends TestNGBase{
 		managenewspage.clickSaveButton();
 		
 		boolean isadduseralertdisplayed = managenewspage.isaddNewsAlertDisplayed();
-		Assert.assertTrue(isadduseralertdisplayed,"User is unable to add news");
+		Assert.assertTrue(isadduseralertdisplayed,Messages.ADDUSERALERTDISPLAYEDERROR);
 	}
 	
 	@Test(description = "To verify HomePage Link ") // Test case to click on home page link
@@ -51,7 +52,7 @@ public class ManageNewsTest extends TestNGBase{
 		
 		String actual=driver.getCurrentUrl();
 		String expected="https://groceryapp.uniqassosiates.com/admin/home";
-		Assert.assertEquals(actual, expected," User is not able to navigate to home page");
+		Assert.assertEquals(actual, expected,Messages.NAVIGATETOHOMEPAGEERROR);
 	}
 	
 		
@@ -73,7 +74,7 @@ public class ManageNewsTest extends TestNGBase{
 		
 		String actualNewsSearched = managenewspage.isSearchedNewsListedIntable();//here the text  value in search table first row is fetched and stord in actualNewsSearched
 		String expectedNews = "sample news";
-		Assert.assertEquals(actualNewsSearched,expectedNews," User cannot the search news result");
+		Assert.assertEquals(actualNewsSearched,expectedNews,Messages.SEARCHEDNEWSNOTFOUNDERROR);
 	}
 	
 	@Test(description = "To verify Search Reset functionality")
@@ -95,6 +96,6 @@ public class ManageNewsTest extends TestNGBase{
 		managenewspage.clickSearchReset();
 		
 		boolean issearchandmangenewscarddispalyed=managenewspage.isSearchAndMangeNewsCarddisplayed();
-		Assert.assertFalse(issearchandmangenewscarddispalyed, "user is not able to reset");
+		Assert.assertFalse(issearchandmangenewscarddispalyed, Messages.RESETERROR);
 	}
 }

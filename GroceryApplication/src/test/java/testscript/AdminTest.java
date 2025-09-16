@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import base.TestNGBase;
 import constant.Constants;
+import constant.Messages;
 import pages.AdminPage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -47,7 +48,7 @@ public class AdminTest extends TestNGBase{
 		adminpage.chooseUsertype(userType);
 		adminpage.clickSaveButton();
 		boolean isAlertDisplayed = adminpage.isAlertDisplayed();
-		Assert.assertTrue(isAlertDisplayed, "User is not added successfully");//here the message given is displayed when testcase failes
+		Assert.assertTrue(isAlertDisplayed, Messages.USERNOTADDEDERROR);//here the message given is displayed when testcase failes
 			
 		}
 

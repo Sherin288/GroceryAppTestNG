@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import base.TestNGBase;
 import constant.Constants;
+import constant.Messages;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -34,7 +35,7 @@ public class HomeTest extends TestNGBase{
 		//Assertion used to find whether the test case fails
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual,expected,"Logout is not successful");//Logout is not successful prints when test case fails
+		Assert.assertEquals(actual,expected,Messages.LOGOUTERROR);//Logout is not successful prints when test case fails
 		
 		
 	}

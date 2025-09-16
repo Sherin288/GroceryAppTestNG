@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Test(failed)">
+  <listeners>
+    <listener class-name="reportGeneration.Listener"/>
+  </listeners>
+  <test thread-count="5" name="FirefoxTest(failed)">
+    <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="testscript.ManageNewsTest">
+      <class name="testscript.LoginTest">
         <methods>
           <include name="driverQuit"/>
           <include name="BrowserInitializer"/>
-          <include name="verifySearchResetfunctionality"/>
-          <include name="verifySearchFunctionality"/>
           <include name="quitAndClose"/>
+          <include name="VerifyLoginWithInvalidUsernameandPassword"/>
         </methods>
-      </class> <!-- testscript.ManageNewsTest -->
+      </class> <!-- testscript.LoginTest -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- FirefoxTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

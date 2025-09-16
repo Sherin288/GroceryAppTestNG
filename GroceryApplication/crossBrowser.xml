@@ -20,4 +20,21 @@
       </class>
     </classes>
   </test> <!-- Test -->
+   
+   <!--For firefox browser testing-->
+    <test thread-count="5" name="FirefoxTest"><!--How many  class , resources can be loaded together - 5, normal practize is to give value 5 -->
+  <parameter name="browser" value="firefox"></parameter><!--parameterization-->
+    <classes>
+     <!-- <class name="testscript.HomeTest"/>   classes are executed as per the order given testng xml , Ctrl+Shift+slash to comment together
+      <class name="testscript.ManageNewsTest"/>-->
+     <!-- <class name="testscript.AdminTest"/> -->
+      <class name="testscript.LoginTest">
+      <methods>
+      <include name="VerifyLoginWithInvalidUsernameandPassword"></include><!-- Only  single method is within login test is executed -->
+     <!-- <exclude name=""></exclude>--><!-- Only  the specified method is excluded from execution login test is executed -->
+      </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+
 </suite> <!-- Suite -->
