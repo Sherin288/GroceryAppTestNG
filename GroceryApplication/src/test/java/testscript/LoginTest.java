@@ -12,10 +12,14 @@ import org.testng.annotations.Test;
 import base.TestNGBase;
 import constant.Constants;
 import constant.Messages;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase {
+	
+	HomePage homepage;//home page declaration is created , But when object is created space is created
+	
 	
 	@Test(priority = 1,description = "Login with valid credentials",retryAnalyzer = retry.Retry.class) // retry analyser is used to execute the test case again when it  fails first time 
 	public void verifyLoginWithValidCredentials() throws IOException {
@@ -24,9 +28,12 @@ public class LoginTest extends TestNGBase {
 		String passwordValue=ExcelUtility.getStringData(1, 1, Constants.LOGINSHEET);// here login page is the excel sheet name
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue)	;
+		//Now chaining is applied in username and password method this is called chaining of methods.
+		//username method is invoked in LoginPage class
+		
+		//loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class , this is commented because of chaining
+		homepage = loginpage.clickOnSignin(); // Here chaining of classes
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
@@ -41,9 +48,9 @@ public class LoginTest extends TestNGBase {
 		String passwordValue = ExcelUtility.getStringData(2, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue).clickOnSignin();	//username method is invoked in LoginPage class
+		
+		//Since same is returned after clicking login page can be clubbed as shown above
 		
 		boolean isloginalertdisplayed = loginpage.isLoginAlertDisplayed();// test calls the isLoginAlertDisplayed() method → it gets either true or false.
 		Assert.assertTrue(isloginalertdisplayed, Messages.INVALIDPASSWORDERROR);
@@ -56,9 +63,8 @@ public class LoginTest extends TestNGBase {
 		String passwordValue = ExcelUtility.getStringData(3, 1,Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue).clickOnSignin();	//username method is invoked in LoginPage class
+		
 		
 		boolean isloginalertdisplayed = loginpage.isLoginAlertDisplayed();// test calls the isLoginAlertDisplayed() method → it gets either true or false.
 		Assert.assertTrue(isloginalertdisplayed, Messages.INVALIDUSERNAMEERROR);
@@ -71,10 +77,8 @@ public class LoginTest extends TestNGBase {
 		//String passwordValue = ExcelUtility.getStringData(4, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
-		
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue).clickOnSignin();	//username method is invoked in LoginPage class
+		//here above the chaining is applied
 		boolean isloginalertdisplayed = loginpage.isLoginAlertDisplayed();// test calls the isLoginAlertDisplayed() method → it gets either true or false.
 		Assert.assertTrue(isloginalertdisplayed, Messages.INVALIDUSERNAMEERRORANDPASSWORD);
 	}

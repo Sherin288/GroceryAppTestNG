@@ -1,10 +1,7 @@
 package testscript;
 
-import org.testng.annotations.Test;
 import java.io.IOException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,7 +13,7 @@ import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase{
-	
+	HomePage homepage;
 	@Test(description = "To verify Home Page Logout Functionality")
 	public void verifyHomePageLogout() throws IOException
 	{
@@ -24,13 +21,13 @@ public class HomeTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(1, 1, Constants.LOGINSHEET);// here login page is the excel sheet name
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue);	//username method is invoked in LoginPage class
+		//loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
+		homepage = loginpage.clickOnSignin();
 		
-		HomePage homepage = new HomePage(driver);//object for homepage class is created and driver is passed as argument
+		//HomePage homepage = new HomePage(driver);//object for homepage class is created and driver is passed as argument
 		homepage.clickAdminIcon();
-		homepage.clickLogout();
+		loginpage = homepage.clickLogout();//chaining of pages, after logout login page is displayed so it is assigned
 		
 		//Assertion used to find whether the test case fails
 		String actual = driver.getCurrentUrl();

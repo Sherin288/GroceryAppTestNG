@@ -1,20 +1,20 @@
 package testscript;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import java.io.IOException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
 import constant.Messages;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNGBase{
+	HomePage homepage;
+	ManageNewsPage managenewspage;
 
 	@Test(description = "To verify add news funtionality")   //Test case1 to add new news
 	public void verifyAddNews() throws IOException {
