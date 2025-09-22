@@ -7,11 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class HomePage {
 
 	public WebDriver driver;
 	PageUtility  pageutility = new PageUtility();
+	WaitUtility waitutility = new WaitUtility();
 	
 	public HomePage(WebDriver driver)
 	{
@@ -23,6 +25,7 @@ public class HomePage {
 	public HomePage clickAdminIcon() {
 		//WebElement adminIcon = driver.findElement(By.xpath("//img[@src='https://groceryapp.uniqassosiates.com/public/assets/admin/dist/img/avatar5.png']"));
 		//adminIcon.click();
+		waitutility.waitUntilClickable(driver, adminIcon);
 		pageutility.clickElement(adminIcon);
 		return this;//return type this because it is staying in same page.
 	}
@@ -42,6 +45,7 @@ public class HomePage {
 	{
 		//WebElement adminMoreInfo = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin'and @class='small-box-footer']"));
 		//adminMoreInfo.click(); instead of this line the below line for  page utility line is added
+		waitutility.waitUntilClickable(driver, adminMoreInfo);
 		pageutility.clickElement(adminMoreInfo);
 		return new AdminPage(driver);
 	}

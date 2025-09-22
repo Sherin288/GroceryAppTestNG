@@ -12,7 +12,7 @@ public class LoginPage {
 	
 	public WebDriver driver;
 	PageUtility pageutility = new PageUtility();
-	WaitUtility waitutility = new WaitUtility();
+	WaitUtility waitutility = new WaitUtility();//explicit wait
 	public LoginPage(WebDriver driver)
 	{
 		this.driver = driver;

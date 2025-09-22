@@ -1,17 +1,18 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class ManageNewsPage {
 	
 public WebDriver driver;
 PageUtility pageutility = new PageUtility();
+WaitUtility waitutility = new WaitUtility();//explicit wait
 	
 	public ManageNewsPage(WebDriver driver)
 	{
@@ -24,6 +25,7 @@ PageUtility pageutility = new PageUtility();
 	{
 		//WebElement manageNewsTile = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
 		//manageNewsTile.click();
+		waitutility.waitUntilClickable(driver, manageNewsTile);
 		pageutility.clickElement(manageNewsTile);
 		return new ManageNewsPage(driver);
 	}
@@ -33,6 +35,7 @@ PageUtility pageutility = new PageUtility();
 	{
 		//WebElement newButton = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-danger']"));
 		//newButton.click();
+		waitutility.waitUntilClickable(driver, newButton);
 		pageutility.clickElement(newButton);
 		return this;
 	}
@@ -60,6 +63,7 @@ PageUtility pageutility = new PageUtility();
 	{
 		//WebElement saveButton = driver.findElement(By.xpath("//button[@name='create']"));
 		//saveButton.click();
+		waitutility.waitUntilClickable(driver, saveButton);
 		pageutility.clickElement(saveButton);
 		return this;
 	}

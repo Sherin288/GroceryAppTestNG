@@ -1,12 +1,9 @@
 package testscript;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 import java.io.IOException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
@@ -33,7 +30,7 @@ public class LoginTest extends TestNGBase {
 		//username method is invoked in LoginPage class
 		
 		//loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class , this is commented because of chaining
-		homepage = loginpage.clickOnSignin(); // Here chaining of classes
+		homepage = loginpage.clickOnSignin(); // Here chaining of classes , here after clicking signin control will go to homepage. 
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";

@@ -23,15 +23,18 @@ public class ManageNewsTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");// here login page is the excel sheet name
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue);	//chaining is applied
+	
+		homepage = loginpage.clickOnSignin();
+		managenewspage.clickManageNewsTile().clickNewButton().enternewsTextBox().clickSaveButton();
 		
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clickNewButton();
-		managenewspage.enternewsTextBox();
-		managenewspage.clickSaveButton();
+		//ManageNewsPage managenewspage = new ManageNewsPage(driver);
+		/*
+		 * managenewspage.clickManageNewsTile(); 
+		 * managenewspage.clickNewButton();
+		 * managenewspage.enternewsTextBox();
+		 *  managenewspage.clickSaveButton();
+		 */
 		
 		boolean isadduseralertdisplayed = managenewspage.isaddNewsAlertDisplayed();
 		Assert.assertTrue(isadduseralertdisplayed,Messages.ADDUSERALERTDISPLAYEDERROR);
@@ -43,12 +46,12 @@ public class ManageNewsTest extends TestNGBase{
 		String usernameValue=ExcelUtility.getStringData(6, 0, "LoginPage");//Data driven approach is preferred
 		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");// here login page is the excel sheet name
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue);	//username method is invoked in LoginPage class
+		//loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
+		homepage = loginpage.clickOnSignin();
+		/* managenewspage = managenewspage.clickManageNewsTile(); */
 		managenewspage.clickManageNewsTile();
-		managenewspage.clickhomepageLink();
+		homepage = managenewspage.clickhomepageLink();
 		
 		String actual=driver.getCurrentUrl();
 		String expected="https://groceryapp.uniqassosiates.com/admin/home";
@@ -63,14 +66,16 @@ public class ManageNewsTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");// here login page is the excel sheet name
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clicksearchButton();
-		managenewspage.searchText();
-		managenewspage.clickSearchingButton();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue);	//username method is invoked in LoginPage class
+		
+		homepage = loginpage.clickOnSignin();
+		
+		managenewspage.clickManageNewsTile().clicksearchButton().searchText().clickSearchingButton();
+		/*
+		 * managenewspage.clicksearchButton(); 
+		 * managenewspage.searchText();
+		 * managenewspage.clickSearchingButton();
+		 */
 		
 		String actualNewsSearched = managenewspage.isSearchedNewsListedIntable();//here the text  value in search table first row is fetched and stord in actualNewsSearched
 		String expectedNews = "sample news";
@@ -84,16 +89,17 @@ public class ManageNewsTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");// here login page is the excel sheet name
 		
 		LoginPage loginpage = new LoginPage(driver);//object for Loginpage class is created
-		loginpage.enterUsername(usernameValue);	//username method is invoked in LoginPage class
-		loginpage.enterPassword(passwordValue);// password method is invoked in LoginPage class
-		loginpage.clickOnSignin();
+		loginpage.enterUsername(usernameValue).enterPassword(passwordValue);	//username method is invoked in LoginPage class
 		
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clicksearchButton();
-		managenewspage.searchText();
-		managenewspage.clickSearchingButton();                          
-		managenewspage.clickSearchReset();
+		homepage = loginpage.clickOnSignin();
+		
+		managenewspage.clickManageNewsTile().clicksearchButton().searchText().clickSearchingButton().clickSearchReset();
+		/*
+		 * managenewspage.clicksearchButton(); 
+		 * managenewspage.searchText();
+		 * managenewspage.clickSearchingButton(); 
+		 * managenewspage.clickSearchReset();
+		 */
 		
 		boolean issearchandmangenewscarddispalyed=managenewspage.isSearchAndMangeNewsCarddisplayed();
 		Assert.assertFalse(issearchandmangenewscarddispalyed, Messages.RESETERROR);
