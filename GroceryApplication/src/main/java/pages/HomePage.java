@@ -49,5 +49,13 @@ public class HomePage {
 		pageutility.clickElement(adminMoreInfo);
 		return new AdminPage(driver);
 	}
-	
+	//to click manage news tile , here this function is written here because manage news tile is in homepage.
+	//also the return type of function is manage news page because because it redirects to manage news page
+	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']")WebElement manageNewsTile;
+	public ManageNewsPage clickManageNewsTile()
+	{
+		
+		pageutility.clickElement(manageNewsTile);
+		return new ManageNewsPage(driver);
+	}
 }

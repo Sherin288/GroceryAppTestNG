@@ -21,9 +21,7 @@ public class LoginPage {
 	@FindBy(xpath = "//input[@placeholder='Username']")WebElement username;
 	public LoginPage enterUsername(String usernameValue)
 	{
-		//WebElement username = driver.findElement(By.xpath("//input[@placeholder='Username']"));// here the value from excel is passed to the field available
-		//line is commented because it is moved to line 17
-		//username.sendKeys(usernameValue);
+		
 		pageutility.sendDataToElement(username, usernameValue);//sendDataToElement is the name of page utility class
 		return this;
 	}
@@ -31,8 +29,7 @@ public class LoginPage {
 	@FindBy(xpath = "//input[@placeholder='Password']") WebElement password;// webelement can be reused multiple times within the class , also we can used as password.IsDisplayed
 	public LoginPage enterPassword(String passwordValue )
 	{
-		//WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
-		//password.sendKeys(passwordValue);
+		
 		pageutility.sendDataToElement(password, passwordValue);
 		return this;//to return current class object this is 
 		
@@ -41,8 +38,7 @@ public class LoginPage {
 	@FindBy (xpath = "//button[text()='Sign In']") WebElement loginBtn;
 	public HomePage clickOnSignin()
 	{
-		//WebElement loginBtn = driver.findElement(By.xpath("//button[text()='Sign In']"));
-		//loginBtn.click(); 
+		
 		waitutility.waitUntilClickable(driver, loginBtn);//from wait utility wait until the element is clickable for 5 sec , explicit wait
 		pageutility.clickElement(loginBtn);
 		return new HomePage(driver);//to return object of  home page ,

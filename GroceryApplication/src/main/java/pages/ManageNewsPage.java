@@ -20,21 +20,12 @@ WaitUtility waitutility = new WaitUtility();//explicit wait
 		PageFactory.initElements(driver, this);//this keyword in pagefactory helps to access the details of entire login 
 	}
 	
-	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']")WebElement manageNewsTile;
-	public ManageNewsPage clickManageNewsTile()
-	{
-		//WebElement manageNewsTile = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
-		//manageNewsTile.click();
-		waitutility.waitUntilClickable(driver, manageNewsTile);
-		pageutility.clickElement(manageNewsTile);
-		return new ManageNewsPage(driver);
-	}
+	
 	
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")WebElement newButton;
 	public ManageNewsPage clickNewButton()
 	{
-		//WebElement newButton = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-danger']"));
-		//newButton.click();
+		
 		waitutility.waitUntilClickable(driver, newButton);
 		pageutility.clickElement(newButton);
 		return this;
@@ -71,8 +62,7 @@ WaitUtility waitutility = new WaitUtility();//explicit wait
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/home' and text()='Home']")WebElement homepageLink;
 	public HomePage clickhomepageLink()
 	{
-		//WebElement homepageLink = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/home' and text()='Home']"));
-		//homepageLink.click();
+		
 		pageutility.clickElement(homepageLink);
 		return new HomePage(driver);
 		
@@ -90,8 +80,7 @@ WaitUtility waitutility = new WaitUtility();//explicit wait
 	@FindBy(xpath = "//input[@placeholder='Title']")WebElement searchTextbox;
 	public ManageNewsPage enterValueSearchTextbox()
 	{
-		//WebElement searchTextbox = driver.findElement(By.xpath("//input[@placeholder='Title']"));
-		//searchTextbox.sendKeys("Sample News");
+		
 		pageutility.sendDataToElement(searchTextbox, "Sample News");
 		return this;
 	}
@@ -99,8 +88,7 @@ WaitUtility waitutility = new WaitUtility();//explicit wait
 	@FindBy(xpath = "//i[@class='fa fa-search']")WebElement searchingButton;
 	public ManageNewsPage clickSearchingButton()
 	{
-		//WebElement searchingButton = driver.findElement(By.xpath("//i[@class='fa fa-search']"));
-		//searchingButton.click();
+		
 		pageutility.clickElement(searchingButton);
 		return this;
 		
@@ -109,8 +97,7 @@ WaitUtility waitutility = new WaitUtility();//explicit wait
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-warning']")WebElement searchReset;
 	public ManageNewsPage clickSearchReset()
 	{
-		//WebElement searchReset = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-warning']"));
-		//searchReset.click();
+		
 		pageutility.clickElement(searchReset);
 		return this;
 	}
